@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <WeatherAppContainer>
-        <div className="mx-auto flex flex-col gap-5 px-4 md:w-[90%]">
+        <div className="mx-auto flex flex-col  px-4 sm:w-[80%] lg:w-[90%]">
           <NavBar city={city} setCity={setCity} />
           <WeatherDetailBox />
         </div>
