@@ -11,15 +11,17 @@ function NavBar({ city, setCity }) {
           <button className="rounded-l-full border border-border bg-primary p-2 text-xl text-border transition-all duration-300 hover:bg-border hover:text-white ">
             <FaLocationArrow />
           </button>
-          <form className="h-full w-full">
-            <input
-              type="text"
-              className="h-full w-full border border-x-0 border-border px-2 text-lg outline-none"
-              value={city}
-              placeholder="Search City..."
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </form>
+
+          <input
+            type="text"
+            className="h-full w-full border border-x-0 border-border px-2 text-lg outline-none"
+            value={city}
+            placeholder="Search City..."
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          />
+
           <button className="rounded-r-full border border-border bg-primary p-2 text-xl text-border transition-all duration-300 hover:bg-border hover:text-white ">
             <FaMagnifyingGlassLocation />
           </button>

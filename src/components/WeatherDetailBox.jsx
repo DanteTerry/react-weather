@@ -3,23 +3,58 @@ import AtmosphereDetail from "./AtmosphereDetail";
 import SunDetail from "./SunDetail";
 import WeekDayTemp from "./WeekDayTemp";
 import SideWeather from "./SideWeather";
+import { useQuery } from "@tanstack/react-query";
+import fetchWeather from "../utils/fetchWeather";
 
-function WeatherDetailBox() {
+import { getCurrentTimeWithOffset } from "../utils/helperFunctions";
+
+function WeatherDetailBox({ city }) {
+  const { data: weatherData } = useQuery({
+    queryKey: ["weather"],
+    queryFn: async () => {
+      const data = await fetchWeather(city);
+      return data;
+    },
+    staleTime: 1000,
+  });
+
+  const formattedDateTime = new Date(weatherData.dt * 1000).toLocaleString(
+    undefined,
+    {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    },
+  );
+
   return (
     <div className="flex flex-col gap-10 sm:gap-8 md:gap-8 lg:flex-row lg:gap-8">
-      <div className="flex flex-col gap-6 rounded-2xl bg-white px-7 py-5 shadow-2xl lg:w-[75%]">
+      <div className="flex flex-col gap-6 rounded-2xl bg-white px-7 py-5 shadow-lg lg:w-[75%]">
         {/* header title and content */}
         <div>
           <span className="text-[24px] font-medium">Forecast in </span>
-          <span className="text-[24px] font-semibold">Prague, CZ</span>
-          <p className="text-[20px]">Wednesday, February 28 at 01:40 AM</p>
+          <span className="text-[24px] font-semibold">
+            {weatherData.name}, {weatherData.sys.country}
+          </span>
+          <p className="text-[20px]">
+            {formattedDateTime} at{" "}
+            {getCurrentTimeWithOffset(weatherData?.timezone).toLocaleTimeString(
+              undefined,
+              {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+              },
+            )}{" "}
+            {new Date(weatherData.dt * 1000).getHours() >= 12 ? "PM" : "AM"}
+          </p>
         </div>
 
         {/* temperature details */}
         <div className="grid w-full gap-5 md:gap-7 lg:grid-cols-[38%,32%,25%] lg:gap-x-5 ">
           <TempDetail />
           <AtmosphereDetail />
-          <SunDetail />
+          <SunDetail weatherData={weatherData} />
         </div>
 
         {/* week temperature detail */}

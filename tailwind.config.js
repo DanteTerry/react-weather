@@ -10,7 +10,8 @@ export default {
         border: "#0a95c0",
       },
       backgroundImage: {
-        "grid-bg": "url('/src/assets/night-landscape.png')",
+        "night-bg": "url('/src/assets/night-landscape.png')",
+        "day-bg": "url('/src/assets/night-landscape.png')",
       },
     },
   },

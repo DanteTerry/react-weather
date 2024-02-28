@@ -1,5 +1,5 @@
 function WeatherAppContainer({ children }) {
-  return <main className="bg-primary h-screen w-full">{children}</main>;
+  return <main className="h-screen w-full bg-primary">{children}</main>;
 }
 
 export default WeatherAppContainer;
