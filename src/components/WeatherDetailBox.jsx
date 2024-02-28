@@ -5,11 +5,14 @@ import WeekDayTemp from "./WeekDayTemp";
 import SideWeather from "./SideWeather";
 import { useQuery } from "@tanstack/react-query";
 import fetchWeather from "../utils/fetchWeather";
-
 import { getCurrentTimeWithOffset } from "../utils/helperFunctions";
 
 function WeatherDetailBox({ city }) {
-  const { data: weatherData } = useQuery({
+  const {
+    data: weatherData,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["weather"],
     queryFn: async () => {
       const data = await fetchWeather(city);
@@ -17,6 +20,14 @@ function WeatherDetailBox({ city }) {
     },
     staleTime: 1000,
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Render loading state while fetching data
+  }
+
+  if (isError) {
+    return <div>Error fetching weather data</div>; // Render error message if there's an error
+  }
 
   const formattedDateTime = new Date(weatherData.dt * 1000).toLocaleString(
     undefined,
@@ -46,7 +57,7 @@ function WeatherDetailBox({ city }) {
                 hour12: false,
               },
             )}{" "}
-            {new Date(weatherData.dt * 1000).getHours() >= 12 ? "PM" : "AM"}
+            {new Date(weatherData?.dt * 1000).getHours() >= 12 ? "PM" : "AM"}
           </p>
         </div>
 
@@ -54,7 +65,7 @@ function WeatherDetailBox({ city }) {
         <div className="grid w-full gap-5 md:gap-7 lg:grid-cols-[38%,32%,25%] lg:gap-x-5 ">
           <TempDetail />
           <AtmosphereDetail />
-          <SunDetail weatherData={weatherData} />
+          <SunDetail weather={weatherData} />
         </div>
 
         {/* week temperature detail */}

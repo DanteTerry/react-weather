@@ -4,7 +4,7 @@ import WeatherDetailBox from "./components/WeatherDetailBox";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
-  const [city, setCity] = useState("prague");
+  const [city, setCity] = useState("delhi ");
 
   const queryClient = new QueryClient();
   return (
