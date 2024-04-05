@@ -3,33 +3,10 @@ import AtmosphereDetail from "./AtmosphereDetail";
 import SunDetail from "./SunDetail";
 import WeekDayTemp from "./WeekDayTemp";
 import SideWeather from "./SideWeather";
-import { useQuery } from "@tanstack/react-query";
-import fetchWeather from "../utils/fetchWeather";
 import { getCurrentTimeWithOffset } from "../utils/helperFunctions";
 
-function WeatherDetailBox({ city }) {
-  const {
-    data: weatherData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["weather"],
-    queryFn: async () => {
-      const data = await fetchWeather(city);
-      return data;
-    },
-    staleTime: 1000,
-  });
-
-  if (isLoading) {
-    return <div>Loading...</div>; // Render loading state while fetching data
-  }
-
-  if (isError) {
-    return <div>Error fetching weather data</div>; // Render error message if there's an error
-  }
-
-  const formattedDateTime = new Date(weatherData.dt * 1000).toLocaleString(
+function WeatherDetailBox({ weatherData }) {
+  const formattedDateTime = new Date(weatherData?.dt * 1000).toLocaleString(
     undefined,
     {
       weekday: "long",
@@ -45,7 +22,7 @@ function WeatherDetailBox({ city }) {
         <div>
           <span className="text-[24px] font-medium">Forecast in </span>
           <span className="text-[24px] font-semibold">
-            {weatherData.name}, {weatherData.sys.country}
+            {weatherData?.name}, {weatherData?.sys?.country}
           </span>
           <p className="text-[20px]">
             {formattedDateTime} at{" "}
@@ -63,8 +40,8 @@ function WeatherDetailBox({ city }) {
 
         {/* temperature details */}
         <div className="grid w-full gap-5 md:gap-7 lg:grid-cols-[38%,32%,25%] lg:gap-x-5 ">
-          <TempDetail />
-          <AtmosphereDetail />
+          <TempDetail weatherData={weatherData} />
+          <AtmosphereDetail weatherData={weatherData} />
           <SunDetail weather={weatherData} />
         </div>
 

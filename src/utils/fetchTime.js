@@ -7,6 +7,6 @@ export default async function fetchTime(lat, lng) {
     return data;
   } catch (error) {
     console.error(error);
-    throw error; // Rethrow the error to propagate it back to the caller
+    throw error;
   }
 }

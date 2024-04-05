@@ -1,6 +1,6 @@
 function SideWeather() {
   return (
-    <div className=" rounded-2xl bg-white p-4  shadow-xl lg:w-[25%]">
+    <div className=" mb-10 rounded-2xl bg-white p-4 shadow-xl  md:mb-0 lg:w-[25%]">
       <div className="border-b pb-1">
         <span className="text-[24px] font-medium">Forecast in other </span>
         <span className="text-[24px] font-semibold">Cities</span>

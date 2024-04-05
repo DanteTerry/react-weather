@@ -1,19 +1,17 @@
 import { FaCloud, FaDroplet } from "react-icons/fa6";
 import { MdVisibilityOff, MdWaves } from "react-icons/md";
 import { GiWindsock } from "react-icons/gi";
-import { useQueryClient } from "@tanstack/react-query";
+
 import { calculateDewPoint } from "../utils/helperFunctions";
 
-function AtmosphereDetail() {
-  const queryClient = useQueryClient();
-  const data = queryClient.getQueriesData("weather")[0][1];
+function AtmosphereDetail({ weatherData }) {
   return (
     <div className="flex flex-col gap-4 rounded-2xl border bg-[#D9F4E6] p-4 shadow-lg lg:mb-0">
       {/* visibility */}
       <div className="flex w-full items-center justify-between border-b border-gray-300 px-1">
         <h3 className="text-lg font-bold">Visibility</h3>
         <div className="flex items-center gap-2 text-lg   ">
-          <span>{data?.visibility / 1000}Km </span>
+          <span>{weatherData?.visibility / 1000}Km </span>
           <span>
             <MdVisibilityOff className="text-sm text-[#005225]" />
           </span>
@@ -24,7 +22,7 @@ function AtmosphereDetail() {
       <div className="flex w-full items-center justify-between border-b border-gray-300 px-1">
         <h3 className="text-lg font-bold">Wind</h3>
         <div className="flex items-center gap-2 text-lg">
-          <span>{Math.round(data?.wind?.speed)}mph</span>
+          <span>{Math.round(weatherData?.wind?.speed)}mph</span>
           <span>
             <GiWindsock className="text-sm text-[#005225]" />
           </span>
@@ -37,7 +35,10 @@ function AtmosphereDetail() {
         <div className="flex items-center gap-2 text-lg   ">
           <span>
             {Math.round(
-              calculateDewPoint(data?.main?.temp, data?.main?.humidity),
+              calculateDewPoint(
+                weatherData?.main?.temp,
+                weatherData?.main?.humidity,
+              ),
             )}
             °C
           </span>
@@ -51,7 +52,7 @@ function AtmosphereDetail() {
       <div className="flex w-full items-center justify-between border-b border-gray-300 px-1">
         <h3 className="text-lg font-bold">Humidity</h3>
         <div className="flex items-center gap-2 text-lg">
-          <span>{data?.main?.humidity}%</span>
+          <span>{weatherData?.main?.humidity}%</span>
           <span>
             <MdWaves className="text-sm text-[#005225]" />
           </span>
@@ -62,7 +63,7 @@ function AtmosphereDetail() {
       <div className="flex w-full items-center justify-between border-b border-gray-300 px-1">
         <h3 className="text-lg font-bold">Cloudiness</h3>
         <div className="flex items-center gap-2 text-lg">
-          <span>{data?.clouds?.all}%</span>
+          <span>{weatherData?.clouds?.all}%</span>
           <span>
             <FaCloud className="text-sm text-[#005225]" />
           </span>
