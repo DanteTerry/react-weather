@@ -12,7 +12,7 @@ function SideWeather() {
       randomCityNames.forEach(async (city) => {
         try {
           const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=4e1c52fa996a6222734052a750750d53&units=metric`,
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_WEATHERAPI_KEY}&units=metric`,
           );
 
           if (!res.ok) {
@@ -36,7 +36,6 @@ function SideWeather() {
     fetchCityData();
   }, []);
 
-  console.log(cities);
   return (
     <div className=" mb-10 rounded-2xl bg-white p-4 shadow-xl  md:mb-0 lg:w-[25%]">
       <div className="border-b pb-1">

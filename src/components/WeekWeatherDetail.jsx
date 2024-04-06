@@ -4,7 +4,7 @@ import WeekDayTemp from "./WeekDayTemp";
 function WeekWeatherDetail({ weatherData }) {
   const [weekWeather, setWeekWeather] = useState(null);
 
-  const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${weatherData?.coord?.lat}&lon=${weatherData?.coord?.lon}&exclude=current,minutely,hourly,alerts&appid=a1a38b931c3179f7381a86b58766c695&units=metric`;
+  const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${weatherData?.coord?.lat}&lon=${weatherData?.coord?.lon}&exclude=current,minutely,hourly,alerts&appid=${import.meta.env.VITE_WEEKLY_WEATHERAPI_KEY}&units=metric`;
 
   useEffect(() => {
     const fetchWeekWeather = async (url) => {
