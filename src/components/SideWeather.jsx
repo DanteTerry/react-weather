@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { randomCityNames } from "../constant/data";
 
 import WeatherIcons from "./WeatherIcons";
-import { checkFirstTwoWords } from "../utils/helperFunctions";
+import { nextLine } from "../utils/helperFunctions";
 
 function SideWeather() {
   const [cities, setCities] = useState([]);
@@ -62,7 +62,7 @@ function SideWeather() {
                 <p className="font-bold">{Math.floor(city?.main?.temp)}°C</p>
 
                 <p className=" whitespace-nowrap">
-                  {checkFirstTwoWords(city?.weather[0]?.description)}
+                  {nextLine(city?.weather[0]?.description)}
                 </p>
               </div>
             </div>

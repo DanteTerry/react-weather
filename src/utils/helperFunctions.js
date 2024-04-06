@@ -74,13 +74,16 @@ export const dayOrNight = (weather) => {
 
 // write a function that takes a string and if the first two words are less than 10 characters, return the first two words, else return the first word
 
-export function checkFirstTwoWords(str) {
-  const words = str.split(" ");
-
-  if ((words[0] + words[1]).length <= 9) {
-    return words[0] + " " + words[1];
+export function nextLine(sentence) {
+  const word = sentence.split(" ");
+  if (word.length === 1) {
+    return sentence;
+  } else if (word.length === 2) {
+    return `${word[0]} \n ${word[1]}`;
+  } else if (word.length === 3) {
+    return `${word[1]} \n ${word[2]}`;
   } else {
-    return words[0] + "\n" + words[1];
+    return;
   }
 }
 
