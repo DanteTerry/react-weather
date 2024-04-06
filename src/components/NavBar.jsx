@@ -1,6 +1,9 @@
 import { FaLocationArrow, FaMagnifyingGlassLocation } from "react-icons/fa6";
+import { useCityName } from "../lib/store/store";
 
-function NavBar({ city, setCity }) {
+function NavBar() {
+  const setCityName = useCityName((state) => state.setCityName);
+  const cityName = useCityName((state) => state.cityName);
   return (
     <nav className=" flex w-full flex-col justify-between gap-4 py-6 lg:flex-row">
       <h1 className=" text-center text-3xl font-bold sm:text-left">
@@ -15,10 +18,9 @@ function NavBar({ city, setCity }) {
           <input
             type="text"
             className="h-full w-full border border-x-0 border-border px-2 text-lg outline-none"
-            value={city}
             placeholder="Search City..."
             onChange={(e) => {
-              setCity(e.target.value);
+              setCityName(e);
             }}
           />
 

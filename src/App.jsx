@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import WeatherDetailBox from "./components/WeatherDetailBox";
 import { useDebounce } from "use-debounce";
+import { useCityName } from "./lib/store/store";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const [city, setCity] = useState("");
 
-  const [cityText] = useDebounce(city, 1000);
+  const cityName = useCityName((state) => {
+    return state.cityName;
+  });
+
+  const [cityText] = useDebounce(cityName, 1000);
 
   useEffect(() => {
     const fetchWeather = async (city) => {
@@ -35,7 +39,7 @@ function App() {
     <>
       <main className="h-screen w-full bg-primary">
         <div className="mx-auto flex flex-col gap-1  px-4 sm:w-[80%] lg:w-[90%]">
-          <NavBar city={city} setCity={setCity} />
+          <NavBar />
           <WeatherDetailBox weatherData={weatherData} />
         </div>
       </main>
