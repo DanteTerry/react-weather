@@ -72,7 +72,17 @@ export const dayOrNight = (weather) => {
   return isDay;
 };
 
-// let's write function to give the correct image based on the weather condition and time of the day
+// write a function that takes a string and if the first two words are less than 10 characters, return the first two words, else return the first word
+
+export function checkFirstTwoWords(str) {
+  const words = str.split(" ");
+
+  if ((words[0] + words[1]).length <= 9) {
+    return words[0] + " " + words[1];
+  } else {
+    return words[0] + "\n" + words[1];
+  }
+}
 
 export {
   breakString,

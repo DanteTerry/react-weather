@@ -1,4 +1,4 @@
-const weatherConditions = [
+export const weatherConditions = [
   "clear sky",
   "few clouds",
   "scattered clouds",
@@ -54,7 +54,7 @@ const weatherConditions = [
   "heavy snow",
 ];
 
-const imageArray = [
+export const imageArray = [
   "clear-day",
   "extreme",
   "overcast",
@@ -125,3 +125,51 @@ const imageArray = [
   "thunderstorms-night-rain",
   "thunderstorms-night-snow",
 ];
+
+export const city_names = [
+  "Paris",
+  "Rome",
+  "Berlin",
+  "Cairo",
+  "Lisbon",
+  "Sydney",
+  "Seoul",
+  "Prague",
+  "Vienna",
+  "Delhi",
+  "Athens",
+  "Oslo",
+  "Hanoi",
+  "Doha",
+  "Sofia",
+  "Minsk",
+  "Amman",
+  "Madrid",
+  "Riyadh",
+  "Tehran",
+  "Osaka",
+  "Seoul",
+  "Lima",
+  "Hanoi",
+  "Nairobi",
+  "Doha",
+  "Sofia",
+  "Minsk",
+  "Amman",
+  "Madrid",
+  "Miami",
+  "Dallas",
+  "Tampa",
+  "Paris",
+  "Lima",
+  "Cairo",
+  "Rome",
+  "Tokyo",
+  "Boston",
+  "Seoul",
+];
+// give 6 random city names from the city_names array
+
+export const randomCityNames = [...new Set(city_names)]
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 5);

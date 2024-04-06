@@ -13,8 +13,8 @@ function WeatherIcons({ weatherData }) {
         : "/src/assets/icons/starry-night.svg";
     } else if (weatherDescription === "few clouds") {
       return isDay
-        ? "/src/assets/icons/rain/partly-cloudy-day.svg"
-        : "/src/assets/icons/rain/partly-cloudy-night.svg";
+        ? "/src/assets/icons/partly-cloudy-day.svg"
+        : "/src/assets/icons/partly-cloudy-night.svg";
     } else if (weatherDescription === "scattered clouds") {
       return isDay
         ? "/src/assets/icons/partly-cloudy-day.svg"

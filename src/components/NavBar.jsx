@@ -3,7 +3,7 @@ import { useCityName } from "../lib/store/store";
 
 function NavBar() {
   const setCityName = useCityName((state) => state.setCityName);
-  const cityName = useCityName((state) => state.cityName);
+
   return (
     <nav className=" flex w-full flex-col justify-between gap-4 py-6 lg:flex-row">
       <h1 className=" text-center text-3xl font-bold sm:text-left">

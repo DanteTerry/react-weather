@@ -19,8 +19,6 @@ function WeekWeatherDetail({ weatherData }) {
 
   const nextSevenDays = weekWeather?.daily?.slice(1, 8);
 
-  console.log(nextSevenDays);
-
   return (
     <div className="overflow-x-scroll lg:overflow-auto">
       <div className="mx-auto flex w-max gap-5 px-2 md:gap-4  lg:w-max lg:gap-9">

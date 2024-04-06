@@ -21,12 +21,16 @@ function SunDetail({ weather }) {
       <div className="flex flex-col items-center gap-1 text-lg">
         <FaSun className="text-[#005225]" />
         <p className="text-2xl capitalize">sunrise</p>
-        <span className="text-xl font-bold">{sunrise.time} AM</span>
+        <span className={`text-xl font-bold ${!isDay && "text-white"}`}>
+          {sunrise.time} AM
+        </span>
       </div>
       <div className="flex flex-col items-center gap-1 text-xl">
         <FaMoon className="text-[#005225]" />
         <p className="text-2xl capitalize">sunset</p>
-        <span className="text-xl font-bold ">{sunset.time} PM</span>
+        <span className={`text-xl font-bold ${!isDay && "text-white"}`}>
+          {sunset.time} PM
+        </span>
       </div>
     </div>
   );
