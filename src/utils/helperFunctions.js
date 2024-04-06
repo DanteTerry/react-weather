@@ -38,12 +38,41 @@ function convertTimestampToTime(timestamp, timezoneOffsetSeconds) {
   const adjustedDate = new Date(adjustedTime);
   const hours = adjustedDate.getHours().toString().padStart(2, "0");
   const minutes = adjustedDate.getMinutes().toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
+  return {
+    hours,
+    time: `${hours}:${minutes}`,
+  };
 }
 
-// let's write function to give the correct image based on the weather condition and time of the day
+export const dayOrNight = (weather) => {
+  const sunrise = convertTimestampToTime(
+    weather?.sys?.sunrise,
+    weather?.timezone,
+  );
 
-function getWeatherIcon(weatherData, currentTime) {}
+  const sunset = convertTimestampToTime(
+    weather?.sys?.sunset,
+    weather?.timezone,
+  );
+
+  const currentTime = getCurrentTimeWithOffset(
+    weather?.timezone,
+  ).toLocaleTimeString(undefined, {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: false,
+  });
+
+  const time = [...currentTime.split(":")];
+
+  const isDay =
+    Number(time[0]) >= Number(sunrise.hours) &&
+    Number(time[0]) < Number(sunset.hours);
+
+  return isDay;
+};
+
+// let's write function to give the correct image based on the weather condition and time of the day
 
 export {
   breakString,

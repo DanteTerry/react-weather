@@ -11,7 +11,7 @@ export default {
       },
       backgroundImage: {
         "night-bg": "url('/src/assets/night-landscape.png')",
-        "day-bg": "url('/src/assets/night-landscape.png')",
+        "day-bg": "url('/src/assets/day-landscape.png')",
       },
     },
   },

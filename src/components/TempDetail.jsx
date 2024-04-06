@@ -1,7 +1,9 @@
-import { FaUmbrella } from "react-icons/fa6";
+import WeatherDescription from "./WeatherDescription";
+import WeatherIcons from "./WeatherIcons";
 
 function TempDetail({ weatherData }) {
-  console.log(weatherData);
+  const weatherDescription = weatherData?.weather[0]?.description;
+
   return (
     <div className="rounded-2xl  border border-gray-300 bg-[#BFEDFB] p-4 px-5 shadow-lg lg:mb-0">
       <div className="flex flex-col items-center justify-between gap-16">
@@ -33,12 +35,9 @@ function TempDetail({ weatherData }) {
             <p className="capitalize">{weatherData?.weather[0]?.description}</p>
             <p>Feels like {Math.round(weatherData?.main?.feels_like)}°C</p>
 
-            <p className="flex items-center gap-1 text-[14px] capitalize">
-              <FaUmbrella className="inline-block text-base" />
-              {weatherData?.weather[0]?.description}
-            </p>
+            <WeatherDescription weatherDescription={weatherDescription} />
           </div>
-          <img className="w-[80px]" src="/src/assets/icons/clear-day.svg" />
+          <WeatherIcons weatherData={weatherData} />
         </div>
       </div>
     </div>

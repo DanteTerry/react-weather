@@ -6,7 +6,7 @@ function SideWeather() {
         <span className="text-[24px] font-semibold">Cities</span>
       </div>
 
-      <div className="flex items-center justify-between  border-b  p-4 pb-2">
+      <div className="flex cursor-pointer items-center justify-between  border-b  p-4  pb-2 hover:bg-neutral-200">
         <div className="flex flex-col items-start">
           <p className="font-bold">London</p>
           <p>GB</p>

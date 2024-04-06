@@ -1,22 +1,32 @@
 import { FaMoon, FaSun } from "react-icons/fa6";
-import { convertTimestampToTime } from "../utils/helperFunctions";
+import { convertTimestampToTime, dayOrNight } from "../utils/helperFunctions";
 
 function SunDetail({ weather }) {
+  const sunrise = convertTimestampToTime(
+    weather?.sys?.sunrise,
+    weather?.timezone,
+  );
+
+  const sunset = convertTimestampToTime(
+    weather?.sys?.sunset,
+    weather?.timezone,
+  );
+
+  const isDay = dayOrNight(weather);
+
   return (
-    <div className="bg-night-bg flex flex-col justify-around gap-5 rounded-2xl  border bg-cover bg-center p-4 shadow-lg  contrast-125 md:gap-3 lg:gap-0">
+    <div
+      className={`flex flex-col justify-around gap-5 rounded-2xl border   bg-cover bg-center p-4 shadow-lg  contrast-125 md:gap-3 lg:gap-0 ${isDay ? "bg-day-bg" : "bg-night-bg"}`}
+    >
       <div className="flex flex-col items-center gap-1 text-lg">
         <FaSun className="text-[#005225]" />
         <p className="text-2xl capitalize">sunrise</p>
-        <span className="text-xl font-bold">
-          {convertTimestampToTime(weather?.sys?.sunrise, weather?.timezone)} AM
-        </span>
+        <span className="text-xl font-bold">{sunrise.time} AM</span>
       </div>
       <div className="flex flex-col items-center gap-1 text-xl">
         <FaMoon className="text-[#005225]" />
         <p className="text-2xl capitalize">sunset</p>
-        <span className="text-xl font-bold ">
-          {convertTimestampToTime(weather?.sys?.sunset, weather?.timezone)} PM
-        </span>
+        <span className="text-xl font-bold ">{sunset.time} PM</span>
       </div>
     </div>
   );
