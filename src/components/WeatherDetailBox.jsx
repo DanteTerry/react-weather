@@ -1,9 +1,9 @@
 import TempDetail from "./TempDetail";
 import AtmosphereDetail from "./AtmosphereDetail";
 import SunDetail from "./SunDetail";
-import WeekDayTemp from "./WeekDayTemp";
 import SideWeather from "./SideWeather";
 import { getCurrentTimeWithOffset } from "../utils/helperFunctions";
+import WeekWeatherDetail from "./WeekWeatherDetail";
 
 function WeatherDetailBox({ weatherData }) {
   const formattedDateTime = new Date(weatherData?.dt * 1000).toLocaleString(
@@ -46,18 +46,7 @@ function WeatherDetailBox({ weatherData }) {
         </div>
 
         {/* week temperature detail */}
-
-        <div className="overflow-x-scroll lg:overflow-auto">
-          <div className="mx-auto flex w-max gap-5 px-2 md:gap-4  lg:w-max lg:gap-9">
-            <WeekDayTemp />
-            <WeekDayTemp />
-            <WeekDayTemp />
-            <WeekDayTemp />
-            <WeekDayTemp />
-            <WeekDayTemp />
-            <WeekDayTemp />
-          </div>
-        </div>
+        <WeekWeatherDetail weatherData={weatherData} />
       </div>
 
       {/* side weather */}

@@ -1,6 +1,6 @@
-// give array of all  the weather conditions from openweather api
+import React from "react";
 
-function WeatherIcons({ weatherData }) {
+function WeekWeatherIcon({ weatherData }) {
   const weatherDescription = weatherData?.weather[0]?.description;
 
   const weatherIcon = weatherData?.weather[0]?.icon;
@@ -13,8 +13,8 @@ function WeatherIcons({ weatherData }) {
         : "/src/assets/icons/starry-night.svg";
     } else if (weatherDescription === "few clouds") {
       return isDay
-        ? "/src/assets/icons/rain/partly-cloudy-day.svg"
-        : "/src/assets/icons/rain/partly-cloudy-night.svg";
+        ? "/src/assets/icons/partly-cloudy-day.svg"
+        : "/src/assets/icons/partly-cloudy-night.svg";
     } else if (weatherDescription === "scattered clouds") {
       return isDay
         ? "/src/assets/icons/partly-cloudy-day.svg"
@@ -130,4 +130,4 @@ function WeatherIcons({ weatherData }) {
   return <img src={getWeatherIcon()} alt="weather icon" className="w-[80px]" />;
 }
 
-export default WeatherIcons;
+export default WeekWeatherIcon;
