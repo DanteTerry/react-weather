@@ -3,9 +3,12 @@ import { randomCityNames } from "../constant/data";
 
 import WeatherIcons from "./WeatherIcons";
 import { nextLine } from "../utils/helperFunctions";
+import { useCityName } from "../lib/store/store";
 
 function SideWeather() {
   const [cities, setCities] = useState([]);
+
+  const setCityNameFromSide = useCityName((state) => state.setCityNameFromSide);
 
   useEffect(() => {
     const fetchCityData = async () => {
@@ -49,7 +52,10 @@ function SideWeather() {
           return (
             <div
               key={index}
-              className="flex cursor-pointer items-center justify-between  border-b  p-4  pb-2 hover:bg-neutral-200"
+              className="flex cursor-pointer items-center justify-between  border-b  p-4  hover:bg-neutral-200"
+              onClick={() => {
+                setCityNameFromSide(city?.name);
+              }}
             >
               <div className="flex flex-col items-start">
                 <p className="font-bold">{city?.name}</p>
@@ -61,9 +67,7 @@ function SideWeather() {
               <div className="flex flex-col items-end">
                 <p className="font-bold">{Math.floor(city?.main?.temp)}°C</p>
 
-                <p className=" whitespace-nowrap">
-                  {nextLine(city?.weather[0]?.description)}
-                </p>
+                <p className="">{nextLine(city?.weather[0]?.description)}</p>
               </div>
             </div>
           );

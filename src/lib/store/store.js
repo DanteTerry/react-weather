@@ -6,6 +6,7 @@ export const useCityName = create(
     (set) => ({
       cityName: "",
       setCityName: (e) => set({ cityName: e.target.value }),
+      setCityNameFromSide: (city) => set({ cityName: city }),
     }),
     {
       name: "cityName",
