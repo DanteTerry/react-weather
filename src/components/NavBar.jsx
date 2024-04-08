@@ -9,7 +9,7 @@ function NavBar() {
       <h1 className=" text-center text-3xl font-bold sm:text-left">
         Weather Dashboard
       </h1>
-      <div className="flex w-full gap-4 lg:w-[50%]">
+      <div className="flex w-full gap-4 lg:w-[50%] lg:justify-end">
         <div className="flex w-[80%]  items-center">
           <button className="rounded-l-full border border-border bg-primary p-2 text-xl text-border transition-all duration-300 hover:bg-border hover:text-white ">
             <FaLocationArrow />
@@ -17,7 +17,7 @@ function NavBar() {
 
           <input
             type="text"
-            className="h-full w-full border border-x-0 border-border px-2 text-lg outline-none"
+            className="h-full w-full  border border-x-0 border-border px-2 text-lg outline-none"
             placeholder="Search City..."
             onChange={(e) => {
               setCityName(e);
@@ -28,9 +28,9 @@ function NavBar() {
             <FaMagnifyingGlassLocation />
           </button>
         </div>
-        <div className="relative w-[60px]  rounded-l-full rounded-r-full border border-border md:w-[70px]">
+        {/* <div className="relative w-[60px]  rounded-l-full rounded-r-full border border-border md:w-[70px]">
           <div className="absolute left-[5px] top-[2px] h-[30px] w-[30px] rounded-full bg-gray-500"></div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

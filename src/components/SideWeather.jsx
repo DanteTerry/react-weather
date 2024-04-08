@@ -7,7 +7,6 @@ import { useCityName } from "../lib/store/store";
 
 function SideWeather() {
   const [cities, setCities] = useState([]);
-
   const setCityNameFromSide = useCityName((state) => state.setCityNameFromSide);
 
   useEffect(() => {
@@ -40,39 +39,40 @@ function SideWeather() {
   }, []);
 
   return (
-    <div className=" mb-10 rounded-2xl bg-white p-4 shadow-xl  md:mb-0 lg:w-[25%]">
+    <div className=" mb-10 rounded-2xl bg-white p-4 shadow-xl  md:mb-0 lg:w-[28%]">
       <div className="border-b pb-1">
         <span className="text-[24px] font-medium">Forecast in other </span>
         <span className="text-[24px] font-semibold">Cities</span>
       </div>
 
-      {
-        //  i want to map through the cities array and display the city name, country, temperature, weather description and icon
-        cities.map((city, index) => {
-          return (
-            <div
-              key={index}
-              className="flex cursor-pointer items-center justify-between  border-b  p-4  hover:bg-neutral-200"
-              onClick={() => {
-                setCityNameFromSide(city?.name);
-              }}
-            >
-              <div className="flex flex-col items-start">
-                <p className="font-bold">{city?.name}</p>
-                <p>{city?.sys?.country}</p>
-              </div>
-
-              {<WeatherIcons weatherData={city} />}
-
-              <div className="flex flex-col items-end">
-                <p className="font-bold">{Math.floor(city?.main?.temp)}°C</p>
-
-                <p className="">{nextLine(city?.weather[0]?.description)}</p>
-              </div>
+      {cities.map((city, index) => {
+        return (
+          <div
+            key={index}
+            className="flex cursor-pointer items-center justify-between  border-b  p-4  hover:bg-neutral-200"
+            onClick={() => {
+              setCityNameFromSide(city?.name);
+            }}
+          >
+            <div className="flex flex-col items-start">
+              <p className="font-bold">{city?.name}</p>
+              <p>{city?.sys?.country}</p>
             </div>
-          );
-        })
-      }
+
+            {<WeatherIcons weatherData={city} />}
+
+            <div className="flex flex-col items-end">
+              <p className="font-bold">{Math.floor(city?.main?.temp)}°C</p>
+
+              <p
+                className={`${city?.weather[0]?.description.length > 10 && "whitespace-pre-line"} text-right `}
+              >
+                {nextLine(city?.weather[0]?.description)}
+              </p>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

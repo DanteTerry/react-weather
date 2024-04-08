@@ -81,6 +81,12 @@ function WeatherIcons({ weatherData }) {
       return "/assets/icons/rain/drizzle.svg";
     } else if (weatherDescription === "showers") {
       return "/assets/icons/atmosphere/raindrops.svg";
+    } else if (weatherDescription === "heavy intensity rain") {
+      return isDay
+        ? "/assets/icons/rain/extreme-day-rain.svg"
+        : "/assets/icons/rain/extreme-night-rain.svg";
+    } else if (weatherDescription === "moderate rain") {
+      return "/assets/icons/rain/rain.svg";
     } else if (weatherDescription === "light snow") {
       return isDay
         ? "/assets/icons/snow/overcast-day-snow.svg"

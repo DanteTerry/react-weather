@@ -28,16 +28,16 @@ function getCurrentTimeWithOffset(timezoneOffsetSeconds) {
       (currentOffsetMinutes + timezoneOffsetSeconds / 60) * 60 * 1000,
   );
 }
-
 function convertTimestampToTime(timestamp, timezoneOffsetSeconds) {
   const date = new Date(timestamp * 1000);
   const isDST = date.getTimezoneOffset() < 0;
   const adjustedOffset = timezoneOffsetSeconds + (isDST ? -3600 : 0);
   const timezoneOffsetMilliseconds = adjustedOffset * 1000;
-  const adjustedTime = date.getTime() + timezoneOffsetMilliseconds;
+  const adjustedTime =
+    date.getTime() + timezoneOffsetMilliseconds + 3600 * 1000; // Add 1 hour
   const adjustedDate = new Date(adjustedTime);
-  const hours = adjustedDate.getHours().toString().padStart(2, "0");
-  const minutes = adjustedDate.getMinutes().toString().padStart(2, "0");
+  const hours = adjustedDate.getUTCHours().toString().padStart(2, "0");
+  const minutes = adjustedDate.getUTCMinutes().toString().padStart(2, "0");
   return {
     hours,
     time: `${hours}:${minutes}`,
@@ -81,7 +81,7 @@ export function nextLine(sentence) {
   } else if (word.length === 2) {
     return `${word[0]} \n ${word[1]}`;
   } else if (word.length === 3) {
-    return `${word[1]} \n ${word[2]}`;
+    return `${word[0]} \n ${word[1]}`;
   } else {
     return;
   }

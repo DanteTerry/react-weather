@@ -2,7 +2,7 @@ import TempDetail from "./TempDetail";
 import AtmosphereDetail from "./AtmosphereDetail";
 import SunDetail from "./SunDetail";
 import SideWeather from "./SideWeather";
-import { getCurrentTimeWithOffset } from "../utils/helperFunctions";
+import { dayOrNight, getCurrentTimeWithOffset } from "../utils/helperFunctions";
 import WeekWeatherDetail from "./WeekWeatherDetail";
 
 function WeatherDetailBox({ weatherData }) {
@@ -15,9 +15,11 @@ function WeatherDetailBox({ weatherData }) {
     },
   );
 
+  const isDay = dayOrNight(weatherData);
+
   return (
-    <div className="flex flex-col gap-10 sm:gap-8 md:gap-8 lg:flex-row lg:gap-8">
-      <div className="flex flex-col gap-6 rounded-2xl bg-white px-7 py-5 shadow-lg lg:w-[75%]">
+    <div className="flex flex-col gap-10 sm:gap-8 md:gap-8 lg:flex-row lg:gap-4">
+      <div className="flex flex-col gap-6 rounded-2xl bg-white px-7 py-5 shadow-lg lg:w-[74%]">
         {/* header title and content */}
         <div>
           <span className="text-[24px] font-medium">Forecast in </span>
@@ -34,7 +36,7 @@ function WeatherDetailBox({ weatherData }) {
                 hour12: false,
               },
             )}{" "}
-            {new Date(weatherData?.dt * 1000).getHours() >= 12 ? "PM" : "AM"}
+            {isDay ? "PM" : "AM"}
           </p>
         </div>
 
