@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" height="auto" src="https://gist.github.com/assets/112513589/7942ef9a-39d4-4e9a-a396-3af7868cafd3"  />
+  <img width="100%" height="auto" src="https://github.com/DanteTerry/skywatch/assets/112513589/f59a46a3-27f0-4b27-9e07-8001a2d98d8f"  />
 </div>
 
 <div align="center">
