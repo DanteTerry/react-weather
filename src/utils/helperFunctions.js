@@ -87,10 +87,28 @@ export function nextLine(sentence) {
   }
 }
 
+const fetchCoordsWeather = async (lat, long) => {
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${import.meta.env.VITE_WEATHERAPI_KEY}&units=metric`,
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch weather data");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error("Failed to fetch weather data");
+  }
+};
+
 export {
   breakString,
   calculateDewPoint,
   breakStringAndReturnOne,
   getCurrentTimeWithOffset,
   convertTimestampToTime,
+  fetchCoordsWeather,
 };
