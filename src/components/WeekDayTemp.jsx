@@ -7,6 +7,7 @@ function WeekDayTemp({ day }) {
   return (
     <div className="mb-3 flex w-[100px] flex-col items-center justify-between gap-3 rounded-xl bg-[#bddcef] py-3 text-center shadow-lg transition-all duration-300 hover:bg-[#8db7cf]">
       <h3 className="text-xl font-bold">{dayName}</h3>
+
       <WeekWeatherIcon weatherData={day} />
       <div className="flex flex-col items-center">
         <p>{Math.floor(day?.temp?.max)}°C</p>

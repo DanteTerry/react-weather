@@ -6,6 +6,8 @@ function WeekWeatherIcon({ weatherData }) {
   const weatherIcon = weatherData?.weather[0]?.icon;
   const isDay = weatherIcon?.includes("d");
 
+  console.log(weatherDescription);
+
   function getWeatherIcon() {
     if (weatherDescription === "clear sky") {
       return isDay
@@ -77,6 +79,10 @@ function WeekWeatherIcon({ weatherData }) {
       return isDay
         ? "/assets/icons/overcast-day.svg"
         : "/assets/icons/overcast-night.svg";
+    } else if (weatherDescription === "moderate rain") {
+      return "/assets/icons/rain/rain.svg";
+    } else if (weatherDescription === "heavy intensity rain") {
+      return "/assets/icons/rain/rain.svg";
     } else if (weatherDescription === "light rain") {
       return "/assets/icons/rain/drizzle.svg";
     } else if (weatherDescription === "showers") {
