@@ -27,6 +27,8 @@ function WeekWeatherIcon({ weatherData }) {
         : "/assets/icons/overcast-night.svg";
     } else if (weatherDescription === "shower rain") {
       return "/assets/icons/rain/raindrops.svg";
+    } else if (weatherDescription === "rain and snow") {
+      return "/assets/icons/rain/rain.svg";
     } else if (weatherDescription === "rain") {
       return "/assets/icons/rain/rain.svg";
     } else if (weatherDescription === "thunderstorm") {
