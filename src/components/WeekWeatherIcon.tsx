@@ -1,13 +1,19 @@
 import React from "react";
 
 function WeekWeatherIcon({ weatherData }) {
+  // Get the weather description from the weather data
   const weatherDescription = weatherData?.weather[0]?.description;
 
+  // Get the weather icon from the weather data
   const weatherIcon = weatherData?.weather[0]?.icon;
+
+  // Check if it is day time based on the weather icon
   const isDay = weatherIcon?.includes("d");
 
+  // Log the weather description to the console
   console.log(weatherDescription);
 
+  // Function to get the appropriate weather icon based on the weather description
   function getWeatherIcon() {
     if (weatherDescription === "clear sky") {
       return isDay
@@ -135,6 +141,8 @@ function WeekWeatherIcon({ weatherData }) {
         : "/assets/icons/overcast-night.svg";
     }
   }
+
+  // Render the weather icon based on the weather description
   return <img src={getWeatherIcon()} alt="weather icon" className="w-[80px]" />;
 }
 
